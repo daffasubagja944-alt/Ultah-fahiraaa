@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Happy 18th, Frisca 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0d0a13;
+    --void-2:#151020;
+    --panel:#1a1424;
+    --panel-2:#221a2f;
+    --line:rgba(232,160,180,0.14);
+    --rose:#e8a0b4;
+    --rose-soft:#f0c3d0;
+    --gold:#d7b26a;
+    --lavender:#a993d1;
+    --text:#f6efe9;
+    --muted:#9c8fa8;
+    --paper:#f2e6c9;
+    --paper-line:#cbb377;
+    --ink:#4a3a2c;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(169,147,209,0.16), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(232,160,180,0.14), transparent 50%),
+      var(--void);
+    color:var(--text);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  button{font-family:inherit;}
+  button:focus-visible, textarea:focus-visible, a:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- particle layer: floating "18" ---------- */
+  .particle-field{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1;
+  }
+  .particle{
+    position:absolute;
+    bottom:-60px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-style:italic;
+    color:var(--rose);
+    opacity:0;
+    user-select:none;
+    animation-name:rise;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) rotate(0deg); opacity:0; }
+    8%{ opacity:0.55; }
+    85%{ opacity:0.35; }
+    100%{ transform:translateY(-115vh) rotate(18deg); opacity:0; }
+  }
+
+  /* ---------- app shell ---------- */
+  .app{
+    position:relative;
+    z-index:2;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+  }
+
+  .slide{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:28px 22px 110px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(14px) scale(0.985);
+    pointer-events:none;
+    transition:opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1);
+  }
+  .slide.active{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* ---------- slide 1 : intro ---------- */
+  #slide-1 .display{
+    font-size:clamp(2.1rem, 8vw, 3.4rem);
+    line-height:1.08;
+    margin:6px 0 2px;
+  }
+  #slide-1 .display em{
+    color:var(--rose-soft);
+    font-style:italic;
+  }
+  #slide-1 .sub{
+    color:var(--muted);
+    font-size:0.95rem;
+    max-width:320px;
+    line-height:1.5;
+  }
+  .gift-btn{
+    margin-top:22px;
+    position:relative;
+    border:1px solid var(--gold);
+    background:linear-gradient(180deg, rgba(215,178,106,0.14), rgba(215,178,106,0.04));
+    color:var(--gold);
+    padding:16px 40px;
+    border-radius:999px;
+    font-size:0.95rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    box-shadow:0 0 0 0 rgba(215,178,106,0.35);
+    animation:pulse-ring 2.6s ease-in-out infinite;
+  }
+  .gift-btn:hover{ transform:translateY(-2px); background:rgba(215,178,106,0.2); }
+  @keyframes pulse-ring{
+    0%,100%{ box-shadow:0 0 0 0 rgba(215,178,106,0.28); }
+    50%{ box-shadow:0 0 0 10px rgba(215,178,106,0); }
+  }
+  .ring{
+    position:absolute;
+    width:150px;height:150px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    top:50%;left:50%;
+    transform:translate(-50%,-58%);
+  }
+  .ring.r2{ width:220px; height:220px; opacity:0.6; }
+  .ring.r3{ width:290px; height:290px; opacity:0.35; }
+
+  /* ---------- slide 2 : surprise ---------- */
+  .surprise-stage{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .photo-frame{
+    width:min(60vw, 220px);
+    height:min(60vw, 220px);
+    border-radius:26px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    box-shadow:0 20px 45px -20px rgba(0,0,0,0.6);
+    animation:float 4.2s ease-in-out infinite;
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  @keyframes float{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%{ transform:translateY(-16px) rotate(2deg); }
+  }
+  .gerbera{
+    width:min(70vw, 240px);
+    margin-top:-6px;
+  }
+  #slide-2 h2{
+    font-size:clamp(1.3rem, 5vw, 1.7rem);
+    margin:4px 0 0;
+  }
+  #slide-2 .sub{ color:var(--muted); font-size:0.88rem; }
+
+  .toast-stack{
+    position:fixed;
+    top:14px;
+    left:0;
+    right:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    z-index:20;
+    pointer-events:none;
+    padding:0 16px;
+  }
+  .toast{
+    width:min(92vw, 340px);
+    display:flex;
+    align-items:center;
+    gap:11px;
+    background:rgba(26,20,36,0.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:11px 14px;
+    box-shadow:0 12px 30px -10px rgba(0,0,0,0.55);
+    transform:translateY(-40px);
+    opacity:0;
+    animation:toast-in .45s cubic-bezier(.34,1.56,.64,1) forwards, toast-out .45s ease forwards 3.2s;
+  }
+  .toast-icon{
+    flex:0 0 auto;
+    width:30px;height:30px;
+    border-radius:9px;
+    background:linear-gradient(135deg, var(--rose), var(--lavender));
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+  }
+  .toast-body{ text-align:left; }
+  .toast-title{ font-size:0.72rem; color:var(--muted); font-weight:600; letter-spacing:0.02em; }
+  .toast-msg{ font-size:0.87rem; font-weight:600; color:var(--text); }
+  @keyframes toast-in{ to{ transform:translateY(0); opacity:1; } }
+  @keyframes toast-out{ to{ transform:translateY(-24px); opacity:0; } }
+
+  /* ---------- slide 3 : notebook ---------- */
+  .notebook{
+    perspective:1000px;
+  }
+  .notebook-page{
+    position:relative;
+    width:min(86vw, 340px);
+    min-height:400px;
+    background:
+      repeating-linear-gradient(var(--paper) 0px, var(--paper) 33px, var(--paper-line) 34px, var(--paper) 35px),
+      var(--paper);
+    border-radius:4px 12px 12px 4px;
+    box-shadow:
+      0 25px 50px -18px rgba(0,0,0,0.65),
+      inset 0 0 0 1px rgba(0,0,0,0.05);
+    transform:rotate(-1.2deg);
+    padding:38px 22px 30px 46px;
+    color:var(--ink);
+  }
+  .notebook-page::before{
+    content:'';
+    position:absolute;
+    left:22px; top:0; bottom:0;
+    width:1px;
+    background:rgba(196,80,90,0.35);
+  }
+  .tape{
+    position:absolute;
+    width:64px; height:24px;
+    background:rgba(232,160,180,0.35);
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+  }
+  .tape.left{ top:-12px; left:26px; transform:rotate(-8deg); }
+  .tape.right{ top:-10px; right:22px; transform:rotate(6deg); }
+  .handwritten{
+    font-family:'Caveat', cursive;
+    font-size:clamp(1.3rem, 5.6vw, 1.65rem);
+    line-height:1.55;
+    margin:0;
+    text-align:left;
+  }
+  .handwritten .name{ color:#a83a52; font-weight:700; }
+
+  .photo-arches{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:16px;
+    margin-top:48px;
+  }
+  .arch{
+    position:relative;
+    width:30%;
+    max-width:100px;
+    aspect-ratio:2/3;
+    border-radius:60px 60px 5px 5px;
+    overflow:hidden;
+    border:2px solid #fffaf0;
+    background:#e4d7b4;
+    box-shadow:0 10px 18px -8px rgba(0,0,0,0.4);
+  }
+  .arch img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .arch:nth-child(1){ z-index:1; }
+  .arch:nth-child(2){ z-index:2; transform:translateY(-10px); aspect-ratio:2/3.15; }
+  .arch:nth-child(3){ z-index:1; }
+
+  /* ---------- slide 3b : hope & wish note ---------- */
+  .type-note{
+    position:relative;
+    width:min(88vw, 340px);
+    background:var(--paper);
+    border-radius:20px;
+    padding:26px 22px 26px 40px;
+    box-shadow:0 25px 50px -18px rgba(0,0,0,0.65);
+    color:var(--ink);
+    text-align:left;
+  }
+  .type-note::before{
+    content:'';
+    position:absolute;
+    left:14px; top:16px; bottom:16px; width:8px;
+    background-image:radial-gradient(circle, rgba(74,58,44,0.35) 3px, transparent 3.6px);
+    background-size:8px 32px;
+    background-repeat:repeat-y;
+  }
+  .note-date-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink);
+    opacity:0.75;
+    padding-bottom:10px;
+    margin-bottom:14px;
+    border-bottom:1px solid var(--paper-line);
+  }
+  .note-notes{
+    display:flex;
+    justify-content:space-between;
+    font-size:1.3rem;
+    color:var(--lavender);
+    opacity:0.7;
+    margin:6px 0 16px;
+  }
+  .note-body{
+    font-family:'Space Mono', monospace;
+    font-size:0.86rem;
+    line-height:1.9;
+    margin:0;
+  }
+  .note-highlight{
+    display:block;
+    margin-top:16px;
+    font-weight:700;
+  }
+
+  /* ---------- slide 4 : feedback ---------- */
+  #slide-4 h2{ font-size:clamp(1.3rem, 5vw, 1.7rem); margin-bottom:2px; }
+  #slide-4 .sub{ color:var(--muted); font-size:0.88rem; max-width:300px; }
+  .feedback-box{
+    width:min(88vw, 340px);
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  textarea{
+    resize:none;
+    height:90px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--text);
+    padding:12px;
+    font-size:0.88rem;
+    font-family:inherit;
+    line-height:1.4;
+  }
+  textarea::placeholder{ color:var(--muted); }
+  .send-btn{
+    border:none;
+    background:linear-gradient(135deg, var(--rose), var(--lavender));
+    color:#1a1120;
+    font-weight:700;
+    padding:13px;
+    border-radius:12px;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .send-btn:hover{ transform:translateY(-1px); filter:brightness(1.06); }
+  .send-note{ font-size:0.72rem; color:var(--muted); }
+
+  /* ---------- nav controls ---------- */
+  .controls{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:30;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:16px 22px calc(18px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg, transparent, rgba(13,10,19,0.9) 40%);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .4s ease;
+  }
+  .controls.visible{ opacity:1; pointer-events:auto; }
+  .nav-btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.03);
+    color:var(--text);
+    padding:12px 22px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+    cursor:pointer;
+    backdrop-filter:blur(10px);
+    transition:transform .2s ease, border-color .2s ease, opacity .2s ease;
+  }
+  .nav-btn:hover{ border-color:var(--gold); transform:translateY(-1px); }
+  .nav-btn:disabled{ opacity:0.3; cursor:default; transform:none; }
+  .dots{ display:flex; gap:7px; }
+  .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.18);
+    transition:background .3s ease, width .3s ease;
+  }
+  .dot.active{ background:var(--gold); width:18px; border-radius:4px; }
+
+  @media (max-width:380px){
+    .slide{ padding:20px 16px 100px; }
+    .nav-btn{ padding:11px 16px; font-size:0.8rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="particle-field" id="particleField"></div>
+
+<div class="app">
+
+  <!-- SLIDE 1 — INTRO -->
+  <section class="slide active" id="slide-1">
+    <div class="ring r3"></div>
+    <div class="ring r2"></div>
+    <div class="ring"></div>
+    <span class="eyebrow">a little something for you</span>
+    <h1 class="display">Happy Birthday,<br><em>Fahiraaaa</em></h1>
+    <p class="sub">Sebelum dibuka, tarik napas dulu.<br>Udahh siapp belumm~</p>
+    <button class="gift-btn" id="openGiftBtn">Open Gift 🎁</button>
+  </section>
+
+  <!-- SLIDE 2 — SURPRISE -->
+  <section class="slide" id="slide-2">
+    <div class="surprise-stage">
+      <div class="photo-frame">
+        <img src="bocil.gif" alt="Foto kamu" loading="lazy">
+      </div>
+      <svg class="gerbera" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g transform="translate(40,80)">
+          <g id="g1">
+            <circle cx="0" cy="0" r="4" fill="var(--gold)"/>
+            <g fill="var(--rose)">
+              <ellipse cx="0" cy="-16" rx="6" ry="16"/>
+              <ellipse cx="11" cy="-11" rx="6" ry="16" transform="rotate(45 11 -11)"/>
+              <ellipse cx="16" cy="0" rx="6" ry="16" transform="rotate(90 16 0)"/>
+              <ellipse cx="11" cy="11" rx="6" ry="16" transform="rotate(135 11 11)"/>
+              <ellipse cx="0" cy="16" rx="6" ry="16" transform="rotate(180 0 16)"/>
+              <ellipse cx="-11" cy="11" rx="6" ry="16" transform="rotate(225 -11 11)"/>
+              <ellipse cx="-16" cy="0" rx="6" ry="16" transform="rotate(270 -16 0)"/>
+              <ellipse cx="-11" cy="-11" rx="6" ry="16" transform="rotate(315 -11 -11)"/>
+            </g>
+            <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+          </g>
+          <line x1="0" y1="20" x2="6" y2="58" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+        <g transform="translate(120,60) scale(1.15)">
+          <g fill="var(--rose-soft)">
+            <ellipse cx="0" cy="-16" rx="6" ry="16"/>
+            <ellipse cx="11" cy="-11" rx="6" ry="16" transform="rotate(45 11 -11)"/>
+            <ellipse cx="16" cy="0" rx="6" ry="16" transform="rotate(90 16 0)"/>
+            <ellipse cx="11" cy="11" rx="6" ry="16" transform="rotate(135 11 11)"/>
+            <ellipse cx="0" cy="16" rx="6" ry="16" transform="rotate(180 0 16)"/>
+            <ellipse cx="-11" cy="11" rx="6" ry="16" transform="rotate(225 -11 11)"/>
+            <ellipse cx="-16" cy="0" rx="6" ry="16" transform="rotate(270 -16 0)"/>
+            <ellipse cx="-11" cy="-11" rx="6" ry="16" transform="rotate(315 -11 -11)"/>
+          </g>
+          <circle cx="0" cy="0" r="7" fill="var(--gold)"/>
+          <line x1="0" y1="20" x2="-5" y2="76" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+        <g transform="translate(190,85)">
+          <g fill="var(--lavender)">
+            <ellipse cx="0" cy="-14" rx="5" ry="14"/>
+            <ellipse cx="10" cy="-10" rx="5" ry="14" transform="rotate(45 10 -10)"/>
+            <ellipse cx="14" cy="0" rx="5" ry="14" transform="rotate(90 14 0)"/>
+            <ellipse cx="10" cy="10" rx="5" ry="14" transform="rotate(135 10 10)"/>
+            <ellipse cx="0" cy="14" rx="5" ry="14" transform="rotate(180 0 14)"/>
+            <ellipse cx="-10" cy="10" rx="5" ry="14" transform="rotate(225 -10 10)"/>
+            <ellipse cx="-14" cy="0" rx="5" ry="14" transform="rotate(270 -14 0)"/>
+            <ellipse cx="-10" cy="-10" rx="5" ry="14" transform="rotate(315 -10 -10)"/>
+          </g>
+          <circle cx="0" cy="0" r="6" fill="var(--gold)"/>
+          <line x1="0" y1="18" x2="4" y2="50" stroke="var(--lavender)" stroke-width="2"/>
+        </g>
+      </svg>
+      <h2>Buat Fahiraaaa yang ke-18 🎈</h2>
+      <p class="sub">Tahann duluu pliss, sampe notifnyaa beresss&hellip;</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — NOTEBOOK -->
+  <section class="slide" id="slide-3">
+    <div class="notebook">
+      <div class="notebook-page">
+        <div class="tape left"></div>
+        <div class="tape right"></div>
+        <p class="handwritten">Happy Birthday <span class="name">Frisca Fahira Berliana</span> yang ke-18 tahun! Sehat selalu, always semangat dan ceria yaa, kita seumuran dehh sampe Oktober 🎂</p>
+        <div class="photo-arches">
+          <div class="arch"><img src="florin 1.png" alt="Florin 1"></div>
+          <div class="arch"><img src="florin 2.png" alt="Florin 2"></div>
+          <div class="arch"><img src="florin 3.png" alt="Florin 3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3B — HOPE & WISH PART 2 -->
+  <section class="slide" id="slide-3b">
+    <span class="eyebrow">hope &amp; wish — part 2</span>
+    <div class="type-note">
+      <div class="note-date-row">
+        <span>Date: 15 / 07 / 2026</span>
+        <span>♪</span>
+      </div>
+      <div class="note-notes"><span>♫</span><span>♪♪</span><span>♫</span></div>
+      <p class="note-body">
+        Apapun mimpi dan target kamuuu ke depannyaa, semoga satu per satu bisa terwujud yaaa.
+        Jangan lupa jajan buatt self reward 😋
+        dannnn kalau cape istirahat,jangan dipaksain.hidup kan hariann bukan borongann.
+        <span class="note-highlight">You're doing great 🔥🔥🔥</span>
+      </p>
+      <div class="note-notes" style="margin:16px 0 0;"><span>♪♪</span><span>♫</span><span>♪♫</span></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — FEEDBACK -->
+  <section class="slide" id="slide-4">
+    <span class="eyebrow">satu lagi</span>
+    <h2>Sudahh saatnyaa 😎</h2>
+    <p class="sub">Tulis balesan kamu, nanti otomatis pindah ke TikTok.</p>
+    <div class="feedback-box">
+      <textarea id="feedbackText" placeholder="Apaa ajaa ketikk....."></textarea>
+      <button class="send-btn" id="sendBtn">Copy & Buka TikTok</button>
+      <span class="send-note" id="sendNote">Pesan akan disalin otomatis ke clipboard kamu.</span>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<nav class="controls" id="controls">
+  <button class="nav-btn" id="backBtn">Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-btn" id="nextBtn">Next</button>
+</nav>
+
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
+
+<script>
+  // ---------- CONFIG ----------
+  const TIKTOK_URL = "https://www.tiktok.com/@daflowzzz";
+
+  // ---------- SLIDE NAVIGATION ----------
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const controls = document.getElementById('controls');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function renderNav(){
+    backBtn.disabled = current === 0;
+    nextBtn.textContent = current === slides.length - 1 ? 'Selesai' : 'Next';
+    dots.forEach((d,i) => d.classList.toggle('active', i === current));
+    controls.classList.toggle('visible', current > 0);
+  }
+
+  function goTo(index){
+    if(index < 0 || index >= slides.length) return;
+    slides[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    renderNav();
+    if(current === 1) runToastSequence();
+  }
+
+  backBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => {
+    if(current === slides.length - 1){
+      document.getElementById('feedbackText').focus();
+      return;
+    }
+    goTo(current + 1);
+  });
+
+  // ---------- OPEN GIFT ----------
+  const bgm = document.getElementById('bgm');
+  document.getElementById('openGiftBtn').addEventListener('click', () => {
+    bgm.volume = 0.55;
+    bgm.play().catch(() => {});
+    goTo(1);
+  });
+
+  // ---------- STOP MUSIC WHEN USER LEAVES THE TAB/APP ----------
+  let wasPlayingBeforeHide = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      wasPlayingBeforeHide = !bgm.paused;
+      bgm.pause();
+    } else if (wasPlayingBeforeHide) {
+      bgm.play().catch(() => {});
+    }
+  });
+  window.addEventListener('pagehide', () => bgm.pause());
+
+  // ---------- iOS-STYLE TOAST SEQUENCE ----------
+  const toastMessages = [
+    'Sehat selaluu yaaaaa',
+    ' Cieee jadii teteh teknik nihhh😎',
+    'Semangat dan terus ceria ☀️',
+    'Semogaaa semua urusanyaa dimudahkann yaaaa '
+  ];
+  const toastStack = document.getElementById('toastStack');
+  let toastTimeouts = [];
+
+  function showToast(msg){
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = `
+      <div class="toast-icon">💌</div>
+      <div class="toast-body">
+        <div class="toast-title">Pesan untukmu</div>
+        <div class="toast-msg"></div>
+      </div>`;
+    t.querySelector('.toast-msg').textContent = msg;
+    toastStack.appendChild(t);
+    setTimeout(() => t.remove(), 3700);
+  }
+
+  function runToastSequence(){
+    toastTimeouts.forEach(id => clearTimeout(id));
+    toastTimeouts = [];
+    toastStack.innerHTML = '';
+    toastMessages.forEach((msg, i) => {
+      const id = setTimeout(() => showToast(msg), 400 + i * 1500);
+      toastTimeouts.push(id);
+    });
+  }
+
+  // ---------- FEEDBACK: COPY + REDIRECT ----------
+  const sendBtn = document.getElementById('sendBtn');
+  const sendNote = document.getElementById('sendNote');
+  sendBtn.addEventListener('click', async () => {
+    const text = document.getElementById('feedbackText').value.trim();
+    if(!text){
+      sendNote.textContent = 'Ciee menginjak kepala 18🗿';
+      return;
+    }
+    try{
+      await navigator.clipboard.writeText(text);
+      sendNote.textContent = 'Tersalin! Mengarahkan ke TikTok...';
+    }catch(e){
+      sendNote.textContent = 'Mengarahkan ke TikTok...';
+    }
+    setTimeout(() => { window.open(TIKTOK_URL, '_blank'); }, 700);
+  });
+
+  // ---------- FLOATING "18" PARTICLES ----------
+  const particleField = document.getElementById('particleField');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function spawnParticle(){
+    if(prefersReducedMotion) return;
+    const p = document.createElement('span');
+    p.className = 'particle';
+    p.textContent = '18';
+    const size = 14 + Math.random() * 22;
+    const duration = 7 + Math.random() * 6;
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = size + 'px';
+    p.style.animationDuration = duration + 's';
+    particleField.appendChild(p);
+    setTimeout(() => p.remove(), duration * 1000 + 200);
+  }
+  setInterval(spawnParticle, 650);
+  for(let i = 0; i < 6; i++) setTimeout(spawnParticle, i * 300);
+
+  renderNav();
+</script>
+
+</body>
+</html>
